@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EFContextMigrator</name>
+    </assembly>
+    <members>
+        <member name="T:EFContextMigrator.Extensions.QueryableExtensions">
+            <summary>
+            IQueryable Extension Methods
+            </summary>
+        </member>
+        <member name="M:EFContextMigrator.Extensions.QueryableExtensions.Set(Microsoft.EntityFrameworkCore.DbContext,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="context">Entity Framework context</param>
+            <param name="t">Data type</param>
+            <returns></returns>
+        </member>
+        <member name="T:EFContextMigrator.Migrator`1">
+            <summary>
+            Migrator main class
+            </summary>
+            <typeparam name="T">Entity Framework Context Class</typeparam>
+        </member>
+        <member name="M:EFContextMigrator.Migrator`1.Initialize(`0,`0,System.String)">
+            <summary>
+            Object initialization, checking connection to contexts.
+            </summary>
+            <param name="source">Data source</param>
+            <param name="target">Data recipient</param>
+            <param name="EFProjectName">Name of the project with the Entity Framework contexts</param>
+            <exception cref="T:System.ApplicationException"></exception>
+        </member>
+        <member name="M:EFContextMigrator.Migrator`1.Migrate(System.String)">
+            <summary>
+            Starting data migration
+            </summary>
+            <param name="Exclude">DBSets excluded from migration</param>
+        </member>
+    </members>
+</doc>

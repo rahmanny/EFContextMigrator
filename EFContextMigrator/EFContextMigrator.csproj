@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Version>0.1.0</Version>
+        <Authors>Aleksandr Rahmanny</Authors>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyVersion>0.1.10.22375</AssemblyVersion>
+        <FileVersion>0.1.10.22375</FileVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DocumentationFile>C:\Rep\EFContextMigrator\EFContextMigrator\EFContextMigrator.xml</DocumentationFile>
+    </PropertyGroup>
+	
+	<PropertyGroup>
+    <DocumentationMarkdown>README.md</DocumentationMarkdown>
+    <PackageProjectUrl>https://github.com/rahmanny/EFContextMigrator</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+</PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.9" />
+      <PackageReference Include="Vsxmd" Version="1.4.5">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+</Project>
