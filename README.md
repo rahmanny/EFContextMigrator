@@ -12,6 +12,6 @@ Library for easy data migration between Entity Framework contexts
  migrator.Initialize(sourceContext, targetContext, "YourEFProjectName");
  ```
   - Run Migration
-    ```cs
+ ```cs
   migrator.Migrate("Classes for exclusion, separated by commas");
-   ```
+ ```
