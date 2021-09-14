@@ -23,13 +23,14 @@
             </summary>
             <typeparam name="T">Entity Framework Context Class</typeparam>
         </member>
-        <member name="M:EFContextMigrator.Migrator`1.Initialize(`0,`0,System.String)">
+        <member name="M:EFContextMigrator.Migrator`1.Initialize(`0,`0,System.String,System.Boolean)">
             <summary>
             Object initialization, checking connection to contexts.
             </summary>
             <param name="source">Data source</param>
             <param name="target">Data recipient</param>
             <param name="EFProjectName">Name of the project with the Entity Framework contexts</param>
+            <param name="isMemory">Use Memory to collect and transfer data</param>
             <exception cref="T:System.ApplicationException"></exception>
         </member>
         <member name="M:EFContextMigrator.Migrator`1.Migrate(System.String)">

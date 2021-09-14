@@ -18,6 +18,7 @@ namespace EFContextMigrator
         private T _targetContext;
         private List<IEntityType> _processList = new List<IEntityType>();
         private string _EFProjectName;
+        private bool _isMemory;
 
         /// <summary>
         /// Object initialization, checking connection to contexts.
@@ -25,12 +26,14 @@ namespace EFContextMigrator
         /// <param name="source">Data source</param>
         /// <param name="target">Data recipient</param>
         /// <param name="EFProjectName">Name of the project with the Entity Framework contexts</param>
+        /// <param name="isMemory">Use Memory to collect and transfer data</param>
         /// <exception cref="ApplicationException"></exception>
-        public void Initialize(T source, T target, string EFProjectName)
+        public void Initialize(T source, T target, string EFProjectName, bool isMemory)
         {
             _sourceContext = source;
             _targetContext = target;
             _EFProjectName = EFProjectName;
+            _isMemory = isMemory;
             try
             {
                 if (_sourceContext.Database.CanConnect() == false)
@@ -55,13 +58,18 @@ namespace EFContextMigrator
         {
 
             _targetContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-            var sourceTables = GetDbSets(_sourceContext);
-            Console.WriteLine($"Build Migration Query");
-            BuildMigrationQuery(_sourceContext);
-            Console.WriteLine($"Done");
+            if (_isMemory)
+            {
+                _targetContext.ChangeTracker.AutoDetectChangesEnabled = false;
+            }
 
-            //foreach (var sourceTable in sourceTables.Where(x => !Exclude.Contains(x.Name)))
-            foreach (var sourceTable in _processList)
+            var sourceTables = GetDbSets(_sourceContext);
+            //Console.WriteLine($"Build Migration Query");
+            //BuildMigrationQuery(_sourceContext);
+            //Console.WriteLine($"Done");
+
+            foreach (var sourceTable in sourceTables.Where(x => !Exclude.Contains(x.Name)))
+            //foreach (var sourceTable in _processList)
             {
                 var EntitiestoExclude = Exclude.Split(",").ToList();
                 if (!EntitiestoExclude.Contains(sourceTable.Name))
@@ -69,7 +77,17 @@ namespace EFContextMigrator
                     MigrateEntity(sourceTable);
                 }
             }
+
+            if (_isMemory)
+            {
+                Console.WriteLine("Detect changes");
+                _targetContext.ChangeTracker.DetectChanges();
+                Console.WriteLine("Process all tables done, save to target DB");
+                _targetContext.SaveChanges();
+            }
+
             Console.WriteLine("Migration Done");
+
 
         }
 
@@ -89,7 +107,10 @@ namespace EFContextMigrator
                 {
                     skip += 1000;
                     _targetContext.AddRange(objects);
-                    _targetContext.SaveChanges();
+                    if (_isMemory == false)
+                    {
+                        _targetContext.SaveChanges();
+                    }
                 }
                 else
                 {
@@ -105,6 +126,7 @@ namespace EFContextMigrator
             return context.Model.GetEntityTypes().ToList();
         }
 
+        [ObsoleteAttribute("This method is obsolete.", true)]
         private void BuildMigrationQuery(DbContext context)
         {
             var models = context.Model;
