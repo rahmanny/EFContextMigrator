@@ -3,11 +3,128 @@
 
 ## Contents
 
+- [ErrorAction](#T-EFContextMigrator-Config-ErrorAction 'EFContextMigrator.Config.ErrorAction')
+  - [Break](#F-EFContextMigrator-Config-ErrorAction-Break 'EFContextMigrator.Config.ErrorAction.Break')
+  - [IgnoreAndLog](#F-EFContextMigrator-Config-ErrorAction-IgnoreAndLog 'EFContextMigrator.Config.ErrorAction.IgnoreAndLog')
+  - [SilentlyContinue](#F-EFContextMigrator-Config-ErrorAction-SilentlyContinue 'EFContextMigrator.Config.ErrorAction.SilentlyContinue')
+- [MigrateConfig\`1](#T-EFContextMigrator-Config-MigrateConfig`1 'EFContextMigrator.Config.MigrateConfig`1')
+  - [EfProjectName](#P-EFContextMigrator-Config-MigrateConfig`1-EfProjectName 'EFContextMigrator.Config.MigrateConfig`1.EfProjectName')
+  - [ErrorAction](#P-EFContextMigrator-Config-MigrateConfig`1-ErrorAction 'EFContextMigrator.Config.MigrateConfig`1.ErrorAction')
+  - [Logger](#P-EFContextMigrator-Config-MigrateConfig`1-Logger 'EFContextMigrator.Config.MigrateConfig`1.Logger')
+  - [MigratorType](#P-EFContextMigrator-Config-MigrateConfig`1-MigratorType 'EFContextMigrator.Config.MigrateConfig`1.MigratorType')
+  - [SourceDbContext](#P-EFContextMigrator-Config-MigrateConfig`1-SourceDbContext 'EFContextMigrator.Config.MigrateConfig`1.SourceDbContext')
+  - [TargetDbContext](#P-EFContextMigrator-Config-MigrateConfig`1-TargetDbContext 'EFContextMigrator.Config.MigrateConfig`1.TargetDbContext')
+- [MigratorType](#T-EFContextMigrator-Config-MigratorType 'EFContextMigrator.Config.MigratorType')
+  - [InMemory](#F-EFContextMigrator-Config-MigratorType-InMemory 'EFContextMigrator.Config.MigratorType.InMemory')
 - [Migrator\`1](#T-EFContextMigrator-Migrator`1 'EFContextMigrator.Migrator`1')
   - [Initialize(source,target,EFProjectName,isMemory)](#M-EFContextMigrator-Migrator`1-Initialize-`0,`0,System-String,System-Boolean- 'EFContextMigrator.Migrator`1.Initialize(`0,`0,System.String,System.Boolean)')
+  - [Initialize(config)](#M-EFContextMigrator-Migrator`1-Initialize-EFContextMigrator-Config-MigrateConfig{`0}- 'EFContextMigrator.Migrator`1.Initialize(EFContextMigrator.Config.MigrateConfig{`0})')
   - [Migrate(Exclude)](#M-EFContextMigrator-Migrator`1-Migrate-System-String- 'EFContextMigrator.Migrator`1.Migrate(System.String)')
 - [QueryableExtensions](#T-EFContextMigrator-Extensions-QueryableExtensions 'EFContextMigrator.Extensions.QueryableExtensions')
   - [Set(context,t)](#M-EFContextMigrator-Extensions-QueryableExtensions-Set-Microsoft-EntityFrameworkCore-DbContext,System-Type- 'EFContextMigrator.Extensions.QueryableExtensions.Set(Microsoft.EntityFrameworkCore.DbContext,System.Type)')
+
+<a name='T-EFContextMigrator-Config-ErrorAction'></a>
+## ErrorAction `type`
+
+##### Namespace
+
+EFContextMigrator.Config
+
+##### Summary
+
+Error actions
+
+<a name='F-EFContextMigrator-Config-ErrorAction-Break'></a>
+### Break `constants`
+
+##### Summary
+
+Stop work and throw an exception
+
+<a name='F-EFContextMigrator-Config-ErrorAction-IgnoreAndLog'></a>
+### IgnoreAndLog `constants`
+
+##### Summary
+
+Continue execution and log error
+
+<a name='F-EFContextMigrator-Config-ErrorAction-SilentlyContinue'></a>
+### SilentlyContinue `constants`
+
+##### Summary
+
+Continue execution and do not log error
+
+<a name='T-EFContextMigrator-Config-MigrateConfig`1'></a>
+## MigrateConfig\`1 `type`
+
+##### Namespace
+
+EFContextMigrator.Config
+
+##### Summary
+
+Configuration
+
+<a name='P-EFContextMigrator-Config-MigrateConfig`1-EfProjectName'></a>
+### EfProjectName `property`
+
+##### Summary
+
+Name of the project containing the Entity Framework classes
+
+<a name='P-EFContextMigrator-Config-MigrateConfig`1-ErrorAction'></a>
+### ErrorAction `property`
+
+##### Summary
+
+Error actions
+
+<a name='P-EFContextMigrator-Config-MigrateConfig`1-Logger'></a>
+### Logger `property`
+
+##### Summary
+
+Logger
+
+<a name='P-EFContextMigrator-Config-MigrateConfig`1-MigratorType'></a>
+### MigratorType `property`
+
+##### Summary
+
+Migrator Type
+
+<a name='P-EFContextMigrator-Config-MigrateConfig`1-SourceDbContext'></a>
+### SourceDbContext `property`
+
+##### Summary
+
+Source DbContext
+
+<a name='P-EFContextMigrator-Config-MigrateConfig`1-TargetDbContext'></a>
+### TargetDbContext `property`
+
+##### Summary
+
+Target DbContext
+
+<a name='T-EFContextMigrator-Config-MigratorType'></a>
+## MigratorType `type`
+
+##### Namespace
+
+EFContextMigrator.Config
+
+##### Summary
+
+Type of Migration
+
+<a name='F-EFContextMigrator-Config-MigratorType-InMemory'></a>
+### InMemory `constants`
+
+##### Summary
+
+Im Memory Migration
 
 <a name='T-EFContextMigrator-Migrator`1'></a>
 ## Migrator\`1 `type`
@@ -47,6 +164,19 @@ Object initialization, checking connection to contexts.
 | Name | Description |
 | ---- | ----------- |
 | [System.ApplicationException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ApplicationException 'System.ApplicationException') |  |
+
+<a name='M-EFContextMigrator-Migrator`1-Initialize-EFContextMigrator-Config-MigrateConfig{`0}-'></a>
+### Initialize(config) `method`
+
+##### Summary
+
+Object initialization, checking connection to contexts.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| config | [EFContextMigrator.Config.MigrateConfig{\`0}](#T-EFContextMigrator-Config-MigrateConfig{`0} 'EFContextMigrator.Config.MigrateConfig{`0}') |  |
 
 <a name='M-EFContextMigrator-Migrator`1-Migrate-System-String-'></a>
 ### Migrate(Exclude) `method`

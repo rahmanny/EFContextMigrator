@@ -4,6 +4,71 @@
         <name>EFContextMigrator</name>
     </assembly>
     <members>
+        <member name="T:EFContextMigrator.Config.ErrorAction">
+            <summary>
+            Error actions
+            </summary>
+        </member>
+        <member name="F:EFContextMigrator.Config.ErrorAction.IgnoreAndLog">
+            <summary>
+            Continue execution and log error
+            </summary>
+        </member>
+        <member name="F:EFContextMigrator.Config.ErrorAction.Break">
+            <summary>
+            Stop work and throw an exception
+            </summary>
+        </member>
+        <member name="F:EFContextMigrator.Config.ErrorAction.SilentlyContinue">
+            <summary>
+            Continue execution and do not log error
+            </summary>
+        </member>
+        <member name="T:EFContextMigrator.Config.MigrateConfig`1">
+            <summary>
+            Configuration
+            </summary>
+        </member>
+        <member name="P:EFContextMigrator.Config.MigrateConfig`1.SourceDbContext">
+            <summary>
+            Source DbContext
+            </summary>
+        </member>
+        <member name="P:EFContextMigrator.Config.MigrateConfig`1.TargetDbContext">
+            <summary>
+            Target DbContext
+            </summary>
+        </member>
+        <member name="P:EFContextMigrator.Config.MigrateConfig`1.MigratorType">
+            <summary>
+            Migrator Type
+            </summary>
+        </member>
+        <member name="P:EFContextMigrator.Config.MigrateConfig`1.EfProjectName">
+            <summary>
+            Name of the project containing the Entity Framework classes
+            </summary>
+        </member>
+        <member name="P:EFContextMigrator.Config.MigrateConfig`1.ErrorAction">
+            <summary>
+            Error actions
+            </summary>
+        </member>
+        <member name="P:EFContextMigrator.Config.MigrateConfig`1.Logger">
+            <summary>
+            Logger
+            </summary>
+        </member>
+        <member name="T:EFContextMigrator.Config.MigratorType">
+            <summary>
+            Type of Migration
+            </summary>
+        </member>
+        <member name="F:EFContextMigrator.Config.MigratorType.InMemory">
+            <summary>
+            Im Memory Migration
+            </summary>
+        </member>
         <member name="T:EFContextMigrator.Extensions.QueryableExtensions">
             <summary>
             IQueryable Extension Methods
@@ -32,6 +97,12 @@
             <param name="EFProjectName">Name of the project with the Entity Framework contexts</param>
             <param name="isMemory">Use Memory to collect and transfer data</param>
             <exception cref="T:System.ApplicationException"></exception>
+        </member>
+        <member name="M:EFContextMigrator.Migrator`1.Initialize(EFContextMigrator.Config.MigrateConfig{`0})">
+            <summary>
+            Object initialization, checking connection to contexts.
+            </summary>
+            <param name="config"></param>
         </member>
         <member name="M:EFContextMigrator.Migrator`1.Migrate(System.String)">
             <summary>
